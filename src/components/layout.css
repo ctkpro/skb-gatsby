@@ -616,11 +616,16 @@ header h1 + a:before{
   }
 
 }
+.banner-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .skb-banner{
-  position: relative;
-  left: -10vw;
-  width: 100vw;
-  /* height: 80vh; */
+  /* position: relative; */
+  /* left: -10vw; */
+  /* width: 100vw; */
+  height: 500px;
 }
 .mobile{
   display: none;
@@ -631,6 +636,9 @@ header h1 + a:before{
   }
   .mobile{
     display: block;
+  }
+  .skb-banner{
+    height: 560px;
   }
 }
 
@@ -676,10 +684,11 @@ section{
 .video-container{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .video{
-  width: 100%;
-  height: 850px;
+  width: 50%;
+  height: 480px;
 }
 .video iframe{
   width: 100%;
@@ -694,21 +703,22 @@ section{
 }
 @media (max-width: 1680px){
   .video{
-    height: 630px;
+    height: 440px;
   }
 }
 @media (max-width: 1280px){
   .video{
-    height: 455px;
+    height: 340px;
   }
 }
 @media (max-width: 1023px){
   .video{
-    height: 345px;
+    height: 285px;
   }
 }
 @media (max-width: 767px){
   .video{
+    width: 100%;
     height: 165px;
   }
   .video-describe{
@@ -721,7 +731,6 @@ section{
 
 /* placeholder區塊 */
 .placeholder{
-  margin-left: -10vw;
   padding: 4.5rem 0;
   width: 100vw;
   background-color: #e71a0f;
@@ -754,6 +763,8 @@ section{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 .card{
   display: inline-block;

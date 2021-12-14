@@ -18,7 +18,7 @@ if(isBrowser){
 const IndexPage = () => (
   <Layout>
     <Seo title="Home" />
-    <div className='banner-container' onClick={popupMessage}>
+    <div className='banner-container'>
       {/* <StaticImage
         src="../images/banner-02.gif"
         className='skb-banner'
@@ -119,10 +119,8 @@ function popupMessage(){
   "想想二十年後的你會怎麼說。","貼上你自己創造的標籤。","不需要斷捨離，只需要清掉桌上的垃圾。","先做了再來怕失敗。","你不需要擁有它，找機會體驗它就好。",
   "任何鳥事都能變成下一首饒舌歌。","帶著問題共處，每個大師都這麼做。","事情讓你跌破眼鏡時，換個視角。","除了照顧好自己，沒有事非做不可。"];
   let randomMsg = messages[Math.floor(Math.random() * messages.length)];
-  // const w  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   let sign = Math.random() < 0.5 ? -1 : 1;
   let offsetX = Math.random() * sign * 15;
-  // let offsetY = w > 400 ? 20 : 15;
   let randomX = 50 + Math.floor(offsetX);
   let randomY = 20 + Math.floor(Math.random() * 30);
   msgBox.style.left = `${randomX}vw`;
@@ -130,5 +128,8 @@ function popupMessage(){
   msgBox.style.opacity = `1`;
   msgBox.textContent = randomMsg;
 }
-
+setTimeout(function(){
+  let bannerContainer = document.querySelector('.banner-container');
+  bannerContainer.addEventListener('click',popupMessage)
+},10000)
 export default IndexPage
