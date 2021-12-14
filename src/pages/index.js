@@ -6,10 +6,14 @@ import Seo from "../components/seo"
 import Card from "../components/card"
 import Video from "../components/video"
 
-// import banner02 from '../images/banner-02.gif';
 import banner_video from '../video/banner030102.mp4';
 import mbanner_video from '../video/mbanner030102.mp4';
-let w  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+let w = 1440;
+const isBrowser = typeof window !== "undefined";
+if(isBrowser){
+  w  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+}
 
 const IndexPage = () => (
   <Layout>
@@ -25,8 +29,11 @@ const IndexPage = () => (
       /> */}
       {/* <img src={banner02} className='skb-banner' alt="banner"/> */}
 
-      <video autoplay='autoplay' muted='muted' className="skb-banner">
-        <source src={w > 768 ? banner_video : mbanner_video} type="video/mp4" />
+      <video autoPlay muted='muted' className="skb-banner desktop">
+        <source src={banner_video} type="video/mp4" />
+      </video>
+      <video autoPlay muted='muted' className="skb-banner mobile">
+        <source src={mbanner_video} type="video/mp4" />
       </video>
     </div>
     <div className='message-box'>NEW MESSAGE</div>
@@ -37,7 +44,7 @@ const IndexPage = () => (
       <p>默念心中疑問，點開第一個提示，立刻遇見你的有感新未來！</p>
     </section>
 
-    <section class='feature'>
+    <section className='feature'>
       <h2 className='section-title'>形象影片</h2>
       <div className='video-container'>
         <Video
@@ -115,9 +122,9 @@ function popupMessage(){
   // const w  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   let sign = Math.random() < 0.5 ? -1 : 1;
   let offsetX = Math.random() * sign * 15;
-  let offsetY = w > 400 ? 20 : 15;
+  // let offsetY = w > 400 ? 20 : 15;
   let randomX = 50 + Math.floor(offsetX);
-  let randomY = offsetY + Math.floor(Math.random() * 30);
+  let randomY = 20 + Math.floor(Math.random() * 30);
   msgBox.style.left = `${randomX}vw`;
   msgBox.style.top = `${randomY}vh`;
   msgBox.style.opacity = `1`;
