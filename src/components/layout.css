@@ -1,3 +1,11 @@
+@font-face {
+  font-family: Noto Sans;
+  src: url('../font/Noto_Sans_TC/NotoSansTC-Medium.otf');
+}
+:root{
+  --orange: #f06900;
+  --blue: #314790;
+}
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -10,7 +18,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: '微軟正黑體';
+  font-family: 'Noto Sans';
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -82,8 +90,7 @@ h1 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Noto Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 2.25rem;
@@ -261,8 +268,7 @@ h2 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Noto Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
@@ -278,8 +284,7 @@ h3 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Noto Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
@@ -295,8 +300,7 @@ h4 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Noto Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
@@ -312,8 +316,7 @@ h5 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Noto Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
@@ -329,8 +332,7 @@ h6 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Noto Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
@@ -614,8 +616,14 @@ header h1 + a:before{
   header .logo{
     width: 150px;
   }
-
 }
+@media (max-width: 350px){
+  header .logo{
+    width: 125px;
+  }
+}
+
+
 .banner-container{
   display: flex;
   flex-wrap: wrap;
@@ -625,7 +633,8 @@ header h1 + a:before{
   /* position: relative; */
   /* left: -10vw; */
   /* width: 100vw; */
-  height: 500px;
+  /* height: 500px; */
+  height: calc( 100vh - 90px);
 }
 .mobile{
   display: none;
@@ -638,46 +647,123 @@ header h1 + a:before{
     display: block;
   }
   .skb-banner{
-    height: 560px;
+    height: calc( 100vh - 79px);
   }
 }
-
+@media (max-width: 400px){
+  .skb-banner{
+    /* height: 555px; */
+  }
+}
+@media (max-width: 350px){
+  .skb-banner{
+    /* height: 470px; */
+  }
+}
 section{
   margin: 3rem 0;
+  font-style: italic;
+  text-align: center;
 }
 
 
 /* slogan區塊 */
 .slogan{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-top: 6rem;
+  padding-left: 10vw;
+  padding-right: 10vw;
   color: #000;
   text-align: center;
 }
+.slogan:before{
+  content: '';
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top: 15px solid var(--orange);
+}
+.slogan .slogan-featured{
+  width: 55%;
+}
+.slogan .slogan-text{
+  position: relative;
+  width: 45%;
+  color: var(--blue);
+  font-style: italic;
+  text-align: left;
+}
+.slogan .slogan-text:before{
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 5px;
+  width: 30px;
+  height: 3px;
+  background-color: var(--orange);
+}
 .slogan h1{
   font-size: 1.75rem;
+  line-height: 2.25rem;
 }
 .slogan p{
-  margin-bottom: 5px;
+  margin-bottom: 0px;
 }
+
+@media (max-width: 767px){
+  .slogan:before{
+    top: -2rem;
+    border: 8px solid transparent;
+    border-top: 12px solid var(--orange);
+  }
+  .slogan .slogan-featured,.slogan .slogan-text{
+    width: 100%;
+  }
+  .slogan .slogan-text{
+    margin-top: 30px;
+  }
+  .slogan h1{
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
 /* slogan區塊end */
 
-
-.section-title{
+h2.section-title{
   position: relative;
-  margin-bottom: 3rem;
-  font-size: 1.25rem;
-  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 0.5rem;
 }
-.section-title:before{
+h2.section-title:before,h2.section-title:after{
   content: '';
-  display: inline-block;
   position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 50px;
-  height: 3px;
-  background-color: #e71a0f;
-
+  top: 50%;
+  height: 1px;
+  width: 38%;
+  background-color: var(--orange);
+}
+h2.section-title:before{
+  left: 0;
+}
+h2.section-title:after{
+  right: 0;
+}
+@media (max-width: 767px){
+  h2.section-title{
+    font-size: 1.5rem;
+  }
+  h2.section-title:before,h2.section-title:after{
+    width: 20%;
+  }
 }
 
 /* video區塊 */
@@ -685,10 +771,12 @@ section{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 .video{
-  width: 50%;
-  height: 480px;
+  width: 100vw;
+  height: 45vw;
 }
 .video iframe{
   width: 100%;
@@ -703,22 +791,21 @@ section{
 }
 @media (max-width: 1680px){
   .video{
-    height: 440px;
+    /* height: 440px; */
   }
 }
 @media (max-width: 1280px){
   .video{
-    height: 340px;
+    /* height: 340px; */
   }
 }
 @media (max-width: 1023px){
   .video{
-    height: 285px;
+    /* height: 285px; */
   }
 }
 @media (max-width: 767px){
   .video{
-    width: 100%;
     height: 165px;
   }
   .video-describe{
@@ -731,17 +818,22 @@ section{
 
 /* placeholder區塊 */
 .placeholder{
-  padding: 4.5rem 0;
+  position: relative;
+  padding: 2.5rem 10vw;
   width: 100vw;
-  background-color: #e71a0f;
-  color: #fff;
-  text-align: center;
+  color: var(--orange);
 }
-.placeholder h2{
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  letter-spacing: 1rem;
+.placeholder:before{
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background-color: var(--blue);
 }
+
 .placeholder p{
   margin-bottom: 0;
   font-size: 1.125rem;
@@ -759,31 +851,61 @@ section{
 /* placeholder區塊end */
 
 /* events 區塊 */
+.events{
+  position: relative;
+  margin-top: 12rem;
+  padding: 2.5rem 10vw;
+  width: 100vw;
+  color: var(--orange);
+}
+.events:before{
+  content: '';
+  position: absolute;
+  top: -6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top: 15px solid var(--orange);
+}
+.events .section-title{
+  margin-bottom: 5rem;
+}
 .card-container{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-left: 10vw;
-  padding-right: 10vw;
 }
 .card{
   display: inline-block;
+  position: relative;
   width: 30%;
   text-align: right;
 }
 .card h3{
+  margin-top: 1rem;
   font-size: 1.25rem;
   text-align: center;
 }
 .card p{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  width: 75%;
   font-size: 0.9rem;
   text-align: center;
 }
 .card .more{
   display: inline-block;
-  color: #555;
-  font-size: 0.9rem;
+  position: absolute;
+  right: -5px;
+  bottom: 0;
+  padding: 2px 8px;
+  border-radius: 50px;
+  background-color: var(--orange);
+  color: #fff;
+  font-size: 12px;
   text-align: right;
+  line-height: 1rem;
   text-decoration: none;
 }
 @media (max-width: 768px){
@@ -794,6 +916,14 @@ section{
   .card p{
     margin-bottom: 5px;
   }
+  .events .section-title:before,.events .section-title:after{
+    width: 20%;
+  }
+  .events:before{
+    top: -2rem;
+    border: 8px solid transparent;
+    border-top: 12px solid var(--orange);
+  }
 }
 /* events 區塊end */
 
@@ -801,7 +931,7 @@ footer{
   position: relative;
   background-color: #e71a0f;
   color: #fff;
-  font-family: '微軟正黑體';
+  font-family: Noto Sans;
   font-size: 14px;
   line-height: 1.5rem;
   z-index: 200;
@@ -829,21 +959,48 @@ footer .to-top{
   font-size: 2rem;
   text-align: center;
 }
+
+/* pop message 區塊 */
+.message-popup{
+  position: relative;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  cursor: pointer;
+}
+.message-popup:before{
+
+}
+.message-popup img{
+  transition: .5s;
+}
+.message-popup img:hover{
+  transition: .5s;
+  transform: scale(1.2);
+}
+.pop-effect{
+  padding: 0.5rem 1rem !important;
+  font-size: 14px !important;
+}
 .message-box{
   position: absolute;
   top: 30vh;
   left: 45vw;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   transform: translateX(-50%);
-  background-color: rgba(235,200,10,0.6);
+  /* background-color: rgba(235,200,10,0.6); */
+  background-color: var(--blue);
   border-radius: 15px;
-  color: #000;
+  color: #fff;
+  font-size: 20px;
   font-weight: 500;
+  font-style: normal;
   letter-spacing: 1px;
   z-index: 100;
   opacity: 0;
-  transition: 0.5s;
+  transition: font-size 0.3s,padding 0.3s;
+  transition-timing-function: cubic-bezier(0,.69,.8,1.5);
   /* display: none; */
+  pointer-events: none;
 }
 .message-box:after{
   content: '';
@@ -853,11 +1010,38 @@ footer .to-top{
   left: 15px;
   border: 10px solid #000;
   border-color: transparent;
-  border-top-color: rgba(235,200,10,0.6);
+  /* border-top-color: rgba(235,200,10,0.6); */
+  border-top-color: var(--blue);
 }
-
-@media (max-width: 768px){
-  .message-box{
-    width: 50%;
+.shareToFB{
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  background-color: rgba(235,200,10,0.9);
+  color: #000;
+  font-style: normal;
+  text-decoration: none;
+  transform: translateY(-60px);
+}
+@media (max-width: 1440px){
+  .message-box{ 
+    padding: 0.3rem 0.75rem !important;
+    font-size: 18px;
   }
 }
+@media (max-width: 768px){
+  .message-box{
+    padding: 0.2rem 0.4rem !important;
+    width: 50%;
+    font-size: 13px !important;
+  }
+  .pop-effect{
+    padding: 0.2rem 0.2rem !important;
+    font-size: 10px !important;
+  }
+  .shareToFB{
+    font-size: 12px;
+    transform: translateY(0px);
+  }
+}
+/* pop message 區塊end */

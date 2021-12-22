@@ -1,13 +1,15 @@
 import * as React from "react"
 import { StaticImage } from "gatsby-plugin-image"
-
+import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Card from "../components/card"
 import Video from "../components/video"
 
-import banner_video from '../video/banner030102.mp4';
-import mbanner_video from '../video/mbanner030102.mp4';
+
+// import banner_video from '../video/banner030102.mp4';
+import banner_video from '../video/b020103.mp4';
+import mbanner_video from '../video/mb020103.mp4';
 
 let w = 1440;
 const isBrowser = typeof window !== "undefined";
@@ -32,20 +34,20 @@ const IndexPage = () => (
       <video autoPlay muted='muted' className="skb-banner desktop">
         <source src={banner_video} type="video/mp4" />
       </video>
-      <video autoPlay muted='muted' className="skb-banner mobile">
+      <video autoPlay muted='muted' playsInline className="skb-banner mobile">
         <source src={mbanner_video} type="video/mp4" />
       </video>
     </div>
-    <div className='message-box'>NEW MESSAGE</div>
 
-    <section className='slogan'>
-      <h1>給下個世代的<br/>負負得正新年第一句</h1>
-      <p>去年都可以度過了，今年還有什麼難得倒你？</p>
-      <p>默念心中疑問，點開第一個提示，立刻遇見你的有感新未來！</p>
+    <section className='placeholder'>
+      <h2 className="section-title">新未來 你來</h2>
+      <p>新年度無視新挑戰</p> 
+      <p>有新光銀和你一起勇敢破關你來，打造最好的未來</p>
     </section>
 
+
     <section className='feature'>
-      <h2 className='section-title'>形象影片</h2>
+      {/* <h2 className='section-title'>形象影片</h2> */}
       <div className='video-container'>
         <Video
           videoSrcURL="https://www.youtube.com/embed/P3192Sz2gws"
@@ -64,13 +66,42 @@ const IndexPage = () => (
       </div>
     </section>
 
-    <section className='placeholder'>
-      <h2>新未來 你來</h2>
-      <p>新年度無視新挑戰 ｜ 有新光銀和你一起勇敢破關 ｜ 你來，打造最好的未來</p>
+    <section className='slogan'>
+      <StaticImage
+        src="../images/slogan-banner.png"
+        // width={'100%'}
+        className='slogan-featured'
+        quality={95}
+        formats={["auto", "webp", "avif"]}
+        alt=""
+        style={{ marginBottom: `0.25rem` }}
+      />
+      <div className="slogan-text">
+        <h1>給下個世代的<br/>負負得正新年第一句</h1>
+        <p>去年都可以度過了，今年還有什麼難得倒你？</p>
+        <p>默念心中疑問，點開第一個提示，</p>
+        <p>立刻遇見你的有感新未來！</p>
+      </div>
+    </section>
+
+    <section className="message-popup" onClick={popupMessage}>
+      <StaticImage
+        src="../images/message-banner.png"
+        // width={'100%'}
+        className=''
+        quality={95}
+        formats={["auto", "webp", "avif"]}
+        alt=""
+        style={{ marginBottom: `0.25rem` }}
+      />
+      <Link to="＃" className="shareToFB fab fa-facebook">
+        新年之神說：分享截圖更快實現心願！  
+      </Link>
+      <div className='message-box'>NEW MESSAGE</div>
     </section>
 
     <section className='events'>
-      <h2 className='section-title'>最新活動</h2>
+      <h2 className='section-title'>錢往新未來</h2>
       <div className='card-container'>
         <Card
           cardSrcURL='' 
@@ -92,9 +123,7 @@ const IndexPage = () => (
 
   </Layout>
 )
-function popupMessage(){
-  let msgBox = document.querySelector('.message-box');
-  const messages = ["任性也是一種個性。","現在錯過的，會在未來重逢。","你想過會在什麼領域大放異彩？","真心喜歡的東西，不會終結。",
+const messages = ["任性也是一種個性。","現在錯過的，會在未來重逢。","你想過會在什麼領域大放異彩？","真心喜歡的東西，不會終結。",
   "你為了誰的未來而活？","沒人聽過的未來才真正充滿可能。","寫下失眠時想到的願望成為明早的開端。","吃拉麵需要排隊，好結果也需要時間。",
   "不要隨便定新年新目標。","說不定你不適合住在都市裡。","未來只想到初音？還有嗎？","你未來人吧，難怪你對現在不滿意。","沒有名氣，所以你不怕丟臉。",
   "躺著休息一下，你會從被爆擊中再站起來。","放社群網站一天假，看看會怎樣。","做什麼會讓你想像力失控？","你需要一次翻轉，或顛覆框架。",
@@ -118,18 +147,29 @@ function popupMessage(){
   "每個人都有不好說的社交障礙。","不想忍耐就不要忍耐。","不可思議的念頭有時超級合理。","分心沒關係，分心是跨領域思考。","發明一種你會想做的工作。",
   "想想二十年後的你會怎麼說。","貼上你自己創造的標籤。","不需要斷捨離，只需要清掉桌上的垃圾。","先做了再來怕失敗。","你不需要擁有它，找機會體驗它就好。",
   "任何鳥事都能變成下一首饒舌歌。","帶著問題共處，每個大師都這麼做。","事情讓你跌破眼鏡時，換個視角。","除了照顧好自己，沒有事非做不可。"];
+
+  function popupMessage(){
+  let msgBox = document.querySelector('.message-box');
+  let rwd = 1;
+  let offsetY = 0;
   let randomMsg = messages[Math.floor(Math.random() * messages.length)];
   let sign = Math.random() < 0.5 ? -1 : 1;
-  let offsetX = Math.random() * sign * 15;
-  let randomX = 50 + Math.floor(offsetX);
-  let randomY = 20 + Math.floor(Math.random() * 30);
+  let offsetX = Math.random() * sign * 20;
+  if(w< 768){
+    rwd = 0;
+    offsetY = -10;
+  }
+  let randomX = 50 + Math.floor(offsetX) + ((sign * 19) * rwd);
+  let randomY = 15 + offsetY + Math.floor(Math.random() * 30);
   msgBox.style.left = `${randomX}vw`;
   msgBox.style.top = `${randomY}vh`;
   msgBox.style.opacity = `1`;
   msgBox.textContent = randomMsg;
+  msgBox.classList.add('pop-effect');
+  setTimeout(
+    function(){
+      msgBox.classList.remove('pop-effect');
+    },300)
 }
-setTimeout(function(){
-  let bannerContainer = document.querySelector('.banner-container');
-  bannerContainer.addEventListener('click',popupMessage)
-},10000)
+
 export default IndexPage

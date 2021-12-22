@@ -70,6 +70,7 @@ function Seo({ description, lang, meta, title }) {
         },
       ].concat(meta)}
     >
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css"></link>
     </Helmet>
   )
