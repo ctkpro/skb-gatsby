@@ -1,19 +1,14 @@
 import React from "react"
 import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage,StaticImage } from "gatsby-plugin-image"
 
-const Card = ({ cardSrcURL, cardTitle, cardExcrept }) => (
+
+const Card = ({ cardSrcURL, cardAlt,cardTitle, cardExcrept }) => (
   <div className="card">
+    {/* <GatsbyImage image='../images/錢往新未來-1.png' alt={``} /> */}
+    {/* <Img fluid={cardSrcURL}/> */}
     <Link to="/page-2/">
-        <StaticImage
-        src="../images/skb-banner-fake.png"
-        // width={'100%'}
-        className='card-img'
-        quality={95}
-        formats={["auto", "webp", "avif"]}
-        alt=""
-        style={{ marginBottom: `0.25rem` }}
-        />
+      <img src={cardSrcURL} alt={cardAlt}/>
     </Link>
     <h3>{cardTitle}</h3>
     <p>{cardExcrept}</p>

@@ -1,6 +1,10 @@
 @font-face {
-  font-family: Noto Sans;
-  src: url('../font/Noto_Sans_TC/NotoSansTC-Medium.otf');
+  font-family: Noto Sans heavy;
+  src: url('../font/Noto_Sans_TC/NotoSansTC-Black.otf');
+}
+@font-face {
+  font-family: Noto Sans regular;
+  src: url('../font/Noto_Sans_TC/NotoSansTC-Regular.otf');
 }
 :root{
   --orange: #f06900;
@@ -18,7 +22,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: 'Noto Sans';
+  font-family: 'Noto Sans regular';
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -634,7 +638,7 @@ header h1 + a:before{
   /* left: -10vw; */
   /* width: 100vw; */
   /* height: 500px; */
-  height: calc( 100vh - 90px);
+  height: calc( 100vh - 99px);
 }
 .mobile{
   display: none;
@@ -647,17 +651,21 @@ header h1 + a:before{
     display: block;
   }
   .skb-banner{
-    height: calc( 100vh - 79px);
+    width: 100%;
+    height: auto;
+
+  }
+}
+@media (max-width: 600px){
+  .skb-banner{
+    height: calc( 100vh - 90px);
+    transform: scale(1.07);
   }
 }
 @media (max-width: 400px){
   .skb-banner{
-    /* height: 555px; */
-  }
-}
-@media (max-width: 350px){
-  .skb-banner{
-    /* height: 470px; */
+    height: calc( 100vh - 87px);
+    transform: scale(1.05);
   }
 }
 section{
@@ -690,11 +698,13 @@ section{
   border-top: 15px solid var(--orange);
 }
 .slogan .slogan-featured{
-  width: 55%;
+  width: 50%;
 }
 .slogan .slogan-text{
-  position: relative;
-  width: 45%;
+  position: absolute;
+  left: 74%;
+  transform: translateX(-50%);
+  /* width: 45%; */
   color: var(--blue);
   font-style: italic;
   text-align: left;
@@ -709,8 +719,8 @@ section{
   background-color: var(--orange);
 }
 .slogan h1{
-  font-size: 1.75rem;
-  line-height: 2.25rem;
+  font-family: Noto Sans heavy;
+  font-size: 2.5rem;
 }
 .slogan p{
   margin-bottom: 0px;
@@ -726,11 +736,13 @@ section{
     width: 100%;
   }
   .slogan .slogan-text{
+    position: relative;
+    left: 0;
+    transform: none;
     margin-top: 30px;
   }
   .slogan h1{
     font-size: 1.5rem;
-    line-height: 2rem;
   }
 }
 
@@ -739,6 +751,7 @@ section{
 h2.section-title{
   position: relative;
   margin-bottom: 1rem;
+  font-family: Noto Sans heavy;
   font-size: 2.5rem;
   font-weight: 900;
   letter-spacing: 0.5rem;
@@ -884,6 +897,7 @@ h2.section-title:after{
 .card h3{
   margin-top: 1rem;
   font-size: 1.25rem;
+  font-style: normal;
   text-align: center;
 }
 .card p{
@@ -892,6 +906,7 @@ h2.section-title:after{
   margin-bottom: 0;
   width: 75%;
   font-size: 0.9rem;
+  font-style: normal;
   text-align: center;
 }
 .card .more{
@@ -904,6 +919,7 @@ h2.section-title:after{
   background-color: var(--orange);
   color: #fff;
   font-size: 12px;
+  font-style: normal;
   text-align: right;
   line-height: 1rem;
   text-decoration: none;
@@ -967,37 +983,35 @@ footer .to-top{
   padding-right: 5vw;
   cursor: pointer;
 }
-.message-popup:before{
-
+.message-popup .gatsby-image-wrapper:hover{
+  transform: scale(1.1);
+  transition: .5s;
 }
 .message-popup img{
-  transition: .5s;
+  /* transition: .5s; */
 }
 .message-popup img:hover{
-  transition: .5s;
-  transform: scale(1.2);
 }
 .pop-effect{
-  padding: 0.5rem 1rem !important;
-  font-size: 14px !important;
+  transform: scale(1) !important;
 }
 .message-box{
   position: absolute;
   top: 30vh;
   left: 45vw;
-  padding: 0.75rem 1.25rem;
-  transform: translateX(-50%);
-  /* background-color: rgba(235,200,10,0.6); */
+  padding: 0.5rem 0.75rem 0.75rem;
+  transform: scale(1.1);
   background-color: var(--blue);
   border-radius: 15px;
   color: #fff;
-  font-size: 20px;
+  /* font-size: 16px; */
+  font-size: 1.75rem;
   font-weight: 500;
   font-style: normal;
-  letter-spacing: 1px;
+  line-height: 1;
   z-index: 100;
   opacity: 0;
-  transition: font-size 0.3s,padding 0.3s;
+  transition: transform 0.3s;
   transition-timing-function: cubic-bezier(0,.69,.8,1.5);
   /* display: none; */
   pointer-events: none;
@@ -1006,7 +1020,7 @@ footer .to-top{
   content: '';
   display: inline-block;
   position: absolute;
-  bottom: -20px;
+  bottom: -19px;
   left: 15px;
   border: 10px solid #000;
   border-color: transparent;
@@ -1015,33 +1029,33 @@ footer .to-top{
 }
 .shareToFB{
   display: inline-block;
+  position: absolute;
+  left: 50%;
+  bottom: -50px;
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
   background-color: rgba(235,200,10,0.9);
   color: #000;
   font-style: normal;
   text-decoration: none;
-  transform: translateY(-60px);
+  transform: translateX(-50%);
 }
 @media (max-width: 1440px){
   .message-box{ 
-    padding: 0.3rem 0.75rem !important;
-    font-size: 18px;
+    font-size: 1.5rem;
   }
 }
 @media (max-width: 768px){
-  .message-box{
-    padding: 0.2rem 0.4rem !important;
-    width: 50%;
-    font-size: 13px !important;
+  .message-popup{
+    margin-top: 120px;
   }
-  .pop-effect{
-    padding: 0.2rem 0.2rem !important;
-    font-size: 10px !important;
+  .message-box{
+    padding: 0.5rem 0.4rem !important;
+    width: 50%;
   }
   .shareToFB{
+    width: 60%;
     font-size: 12px;
-    transform: translateY(0px);
   }
 }
 /* pop message 區塊end */

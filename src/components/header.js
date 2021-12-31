@@ -12,7 +12,7 @@ const Header = ({ siteTitle }) => (
       style={{
         margin: `0 auto`,
         maxWidth: 960,
-        padding: `1.25rem 1.0875rem`,
+        padding: `1.5rem 1.0875rem`,
       }}
     >
       <h1 style={{ margin: 0 }}>
@@ -40,7 +40,7 @@ const Header = ({ siteTitle }) => (
         </Link>
       </h1>
       <Link
-          to="https://www.facebook.com/share.php?u=https%3A%2F%2Fdogooderevent.com%2F2019skbwithyou"
+          to="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fctkpro.github.io%2Fskb-gatsby%2F&display=popup&ref=plugin&src=share_button"
           className='fab fa-facebook'
           style={{
             color: `white`,

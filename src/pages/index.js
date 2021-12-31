@@ -8,8 +8,11 @@ import Video from "../components/video"
 
 
 // import banner_video from '../video/banner030102.mp4';
-import banner_video from '../video/b020103.mp4';
+import banner_video from '../video/b020103-1080.mp4';
 import mbanner_video from '../video/mb020103.mp4';
+import card1 from '../images/錢往新未來-1.png';
+import card2 from '../images/錢往新未來-2.png';
+import card3 from '../images/錢往新未來-3.png';
 
 let w = 1440;
 const isBrowser = typeof window !== "undefined";
@@ -19,7 +22,7 @@ if(isBrowser){
 
 const IndexPage = () => (
   <Layout>
-    <Seo title="Home" />
+    <Seo title="新光銀行" subTitle='快來試試你的新年第一句！' />
     <div className='banner-container'>
       {/* <StaticImage
         src="../images/banner-02.gif"
@@ -31,10 +34,10 @@ const IndexPage = () => (
       /> */}
       {/* <img src={banner02} className='skb-banner' alt="banner"/> */}
 
-      <video autoPlay muted='muted' className="skb-banner desktop">
+      <video autoPlay muted='muted' loop className="skb-banner desktop">
         <source src={banner_video} type="video/mp4" />
       </video>
-      <video autoPlay muted='muted' playsInline className="skb-banner mobile">
+      <video autoPlay muted='muted' loop playsInline className="skb-banner mobile">
         <source src={mbanner_video} type="video/mp4" />
       </video>
     </div>
@@ -68,7 +71,7 @@ const IndexPage = () => (
 
     <section className='slogan'>
       <StaticImage
-        src="../images/slogan-banner.png"
+        src="../images/slogan-banner-fix.png"
         // width={'100%'}
         className='slogan-featured'
         quality={95}
@@ -86,7 +89,7 @@ const IndexPage = () => (
 
     <section className="message-popup" onClick={popupMessage}>
       <StaticImage
-        src="../images/message-banner.png"
+        src="../images/message-banner-fix.png"
         // width={'100%'}
         className=''
         quality={95}
@@ -94,8 +97,10 @@ const IndexPage = () => (
         alt=""
         style={{ marginBottom: `0.25rem` }}
       />
-      <Link to="＃" className="shareToFB fab fa-facebook">
-        新年之神說：分享截圖更快實現心願！  
+      <Link 
+        to="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fctkpro.github.io%2Fskb-gatsby%2F&display=popup&ref=plugin&src=share_button" 
+        className="shareToFB fab fa-facebook">
+        新年之神說：分享更快實現心願！
       </Link>
       <div className='message-box'>NEW MESSAGE</div>
     </section>
@@ -104,17 +109,17 @@ const IndexPage = () => (
       <h2 className='section-title'>錢往新未來</h2>
       <div className='card-container'>
         <Card
-          cardSrcURL='' 
-          cardTitle='最新活動一' 
+          cardSrcURL={card1}
+          cardTitle='最新活動一'
           cardExcrept='活動一的描述活動一的描述活動一的描述'
         />
         <Card
-          cardSrcURL='' 
+          cardSrcURL={card2}
           cardTitle='最新活動二' 
           cardExcrept='活動二的描述活動二的描述活動二的描述'
         />
         <Card
-          cardSrcURL='' 
+          cardSrcURL={card3}
           cardTitle='最新活動三' 
           cardExcrept='活動三的描述活動三的描述活動三的描述'
         />
@@ -149,27 +154,55 @@ const messages = ["任性也是一種個性。","現在錯過的，會在未來�
   "任何鳥事都能變成下一首饒舌歌。","帶著問題共處，每個大師都這麼做。","事情讓你跌破眼鏡時，換個視角。","除了照顧好自己，沒有事非做不可。"];
 
   function popupMessage(){
-  let msgBox = document.querySelector('.message-box');
-  let rwd = 1;
-  let offsetY = 0;
-  let randomMsg = messages[Math.floor(Math.random() * messages.length)];
-  let sign = Math.random() < 0.5 ? -1 : 1;
-  let offsetX = Math.random() * sign * 20;
-  if(w< 768){
-    rwd = 0;
-    offsetY = -10;
-  }
-  let randomX = 50 + Math.floor(offsetX) + ((sign * 19) * rwd);
-  let randomY = 15 + offsetY + Math.floor(Math.random() * 30);
-  msgBox.style.left = `${randomX}vw`;
-  msgBox.style.top = `${randomY}vh`;
-  msgBox.style.opacity = `1`;
-  msgBox.textContent = randomMsg;
-  msgBox.classList.add('pop-effect');
-  setTimeout(
-    function(){
-      msgBox.classList.remove('pop-effect');
+    let msgBox = document.querySelector('.message-box');
+    let rwd = 1;
+    
+    let randomMsg = messages[~~(Math.random() * messages.length)];
+    msgBox.textContent = randomMsg;
+    if(msgBox.textContent.length > 13){
+      msgBox.style.width = '300px';
+    }
+
+    let offsetYRate = 30;
+    let offsetY = 0;
+    if(w < 768){
+      rwd = 0;
+      offsetYRate = 5;
+      offsetY = msgBox.textContent.length >= 10 ? -50 : -40;
+    }
+    let randomX;
+    let randomY = 15 + offsetY + ~~(Math.random() * offsetYRate);
+    // let envelopeWidth = 410;
+    if(Math.random() < 0.5){
+      // 從最左邊到信封左側，信封寬410
+      // let leftLimit = (w - envelopeWidth)/2;
+      let range = 15;
+      if(w<=1440){ range = 12; }
+      if(w<=1280){ range = 10; }
+      randomX = (Math.random() * range);
+      // if( (randomX/100)*w + msgBox.offsetWidth > leftLimit){
+      //   randomX = ((leftLimit - msgBox.offsetWidth)/w)*100;
+      // }
+    }else{
+      let rangeFrom = 60;
+      let rangeTo = 100;
+      if( w<= 1440){
+        rangeFrom = 65;
+        rangeTo = 75;
+      }
+      randomX = rangeFrom + (Math.random() * (rangeTo - rangeFrom));
+      if( (randomX/100)*w + msgBox.offsetWidth > w){
+        randomX = ((w - msgBox.offsetWidth)/w)*100;
+      }
+    }
+    msgBox.style.left = `${randomX}%`;
+    msgBox.style.top = `${randomY}%`;
+    msgBox.style.opacity = `1`;
+    
+    msgBox.classList.remove('pop-effect');
+    setTimeout(function(){
+      msgBox.classList.add('pop-effect');
     },300)
-}
+  }
 
 export default IndexPage
