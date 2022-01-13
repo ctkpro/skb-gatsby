@@ -10,9 +10,9 @@ import Video from "../components/video"
 // import banner_video from '../video/banner030102.mp4';
 import banner_video from '../video/b020103-1080.mp4';
 import mbanner_video from '../video/mb020103.mp4';
-import card1 from '../images/錢往新未來-1.png';
-import card2 from '../images/錢往新未來-2.png';
-import card3 from '../images/錢往新未來-3.png';
+import card1 from '../images/OU數存專區_486x322.jpg';
+import card2 from '../images/OU微企貸形象廣告_486x322.jpg';
+import card3 from '../images/智能理財_486x322.png';
 
 let w = 1440;
 const isBrowser = typeof window !== "undefined";
@@ -22,7 +22,7 @@ if(isBrowser){
 
 const IndexPage = () => (
   <Layout>
-    <Seo title="新光銀行" subTitle='快來試試你的新年第一句！' />
+    <Seo title="新光銀行" subTitle='30歲以下必懂，準到哭，新年厭世冷雞湯第一句就是你了' />
     <div className='banner-container'>
       {/* <StaticImage
         src="../images/banner-02.gif"
@@ -45,7 +45,8 @@ const IndexPage = () => (
     <section className='placeholder'>
       <h2 className="section-title">新未來 你來</h2>
       <p>新年度無視新挑戰</p> 
-      <p>有新光銀和你一起勇敢破關你來，打造最好的未來</p>
+      <p>有新光銀和你一起勇敢破關</p>
+      <p>你來，打造最好的未來</p>
     </section>
 
 
@@ -109,19 +110,22 @@ const IndexPage = () => (
       <h2 className='section-title'>錢往新未來</h2>
       <div className='card-container'>
         <Card
+          cardLink='https://www.skbank.com.tw/campaign/skbankOU/home'
           cardSrcURL={card1}
-          cardTitle='最新活動一'
-          cardExcrept='活動一的描述活動一的描述活動一的描述'
+          cardTitle='OU數位帳戶'
+          cardExcrept='線上快速開戶優惠滿滿'
         />
         <Card
+          cardLink='https://www.skbank.com.tw/df0df61416.html'
           cardSrcURL={card2}
-          cardTitle='最新活動二' 
-          cardExcrept='活動二的描述活動二的描述活動二的描述'
+          cardTitle='OU 微企貸' 
+          cardExcrept='線上徵審8小時速核貸'
         />
         <Card
+          cardLink='https://skbrobo.skbank.com.tw/robot/'
           cardSrcURL={card3}
-          cardTitle='最新活動三' 
-          cardExcrept='活動三的描述活動三的描述活動三的描述'
+          cardTitle='新光智能理財' 
+          cardExcrept='專業團隊電腦嚴選標的'
         />
       </div>
     </section>
@@ -159,13 +163,19 @@ const messages = ["任性也是一種個性。","現在錯過的，會在未來�
     
     let randomMsg = messages[~~(Math.random() * messages.length)];
     msgBox.textContent = randomMsg;
-    if(msgBox.textContent.length > 13){
-      msgBox.style.width = '300px';
+    if(msgBox.textContent.length >= 13){
+      msgBox.style.width = '350px';
+      if(w<=1280){
+        msgBox.style.width = '300px';
+      }
+      if(w<=1024){
+        msgBox.style.width = '250px';
+      }
     }
 
     let offsetYRate = 30;
     let offsetY = 0;
-    if(w < 768){
+    if(w <= 768){
       rwd = 0;
       offsetYRate = 5;
       offsetY = msgBox.textContent.length >= 10 ? -50 : -40;
@@ -178,7 +188,11 @@ const messages = ["任性也是一種個性。","現在錯過的，會在未來�
       // let leftLimit = (w - envelopeWidth)/2;
       let range = 15;
       if(w<=1440){ range = 12; }
-      if(w<=1280){ range = 10; }
+      if(w<=1280){ range = 7; }
+      if(w<=1024){ range = 6; }
+      if(msgBox.textContent.length < 13){
+        range = 1.5;
+      }
       randomX = (Math.random() * range);
       // if( (randomX/100)*w + msgBox.offsetWidth > leftLimit){
       //   randomX = ((leftLimit - msgBox.offsetWidth)/w)*100;
@@ -189,6 +203,9 @@ const messages = ["任性也是一種個性。","現在錯過的，會在未來�
       if( w<= 1440){
         rangeFrom = 65;
         rangeTo = 75;
+      }
+      if( w<= 1024){
+        rangeFrom = 70;
       }
       randomX = rangeFrom + (Math.random() * (rangeTo - rangeFrom));
       if( (randomX/100)*w + msgBox.offsetWidth > w){

@@ -3,8 +3,6 @@ import PropTypes from "prop-types"
 import { StaticImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 
-let gray = '#333f48';
-let red = '#da291c';
 
 const Header = ({ siteTitle }) => (
   <header>

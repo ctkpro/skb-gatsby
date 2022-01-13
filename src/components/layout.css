@@ -9,6 +9,7 @@
 :root{
   --orange: #f06900;
   --blue: #314790;
+  --black: #000;
 }
 html {
   -ms-text-size-adjust: 100%;
@@ -130,7 +131,7 @@ img {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  margin-bottom: 1.45rem;
+  margin-bottom: 1rem;
 }
 svg:not(:root) {
   overflow: hidden;
@@ -683,8 +684,8 @@ section{
   align-items: center;
   position: relative;
   margin-top: 6rem;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
   color: #000;
   text-align: center;
 }
@@ -704,7 +705,7 @@ section{
   position: absolute;
   left: 74%;
   transform: translateX(-50%);
-  /* width: 45%; */
+  width: 27.5%;
   color: var(--blue);
   font-style: italic;
   text-align: left;
@@ -725,7 +726,18 @@ section{
 .slogan p{
   margin-bottom: 0px;
 }
-
+@media (max-width: 768px){
+  .slogan:before{
+    top: -4rem;
+  }
+  .slogan .slogan-featured{
+    width: 49%;
+  }
+  .slogan .slogan-text{
+    width: 48%;
+    transform: translateX(-51%);
+  }
+}
 @media (max-width: 767px){
   .slogan:before{
     top: -2rem;
@@ -770,7 +782,15 @@ h2.section-title:before{
 h2.section-title:after{
   right: 0;
 }
-@media (max-width: 767px){
+@media (max-width: 768px){
+  h2.section-title{
+    font-size: 1.5rem;
+  }
+  h2.section-title:before,h2.section-title:after{
+    width: 30%;
+  }
+}
+@media (max-width: 600px){
   h2.section-title{
     font-size: 1.5rem;
   }
@@ -784,8 +804,8 @@ h2.section-title:after{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 .video{
   width: 100vw;
@@ -819,7 +839,7 @@ h2.section-title:after{
 }
 @media (max-width: 767px){
   .video{
-    height: 165px;
+    height: 190px;
   }
   .video-describe{
     padding: 0.5rem;
@@ -832,7 +852,7 @@ h2.section-title:after{
 /* placeholder區塊 */
 .placeholder{
   position: relative;
-  padding: 2.5rem 10vw;
+  padding: 2.5rem 5vw;
   width: 100vw;
   color: var(--orange);
 }
@@ -854,7 +874,7 @@ h2.section-title:after{
 }
 @media (max-width: 768px){
   .placeholder h2{
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
   }
   .placeholder p{
     padding: 0 10px;
@@ -867,7 +887,7 @@ h2.section-title:after{
 .events{
   position: relative;
   margin-top: 12rem;
-  padding: 2.5rem 10vw;
+  padding: 2.5rem 5vw;
   width: 100vw;
   color: var(--orange);
 }
@@ -892,10 +912,10 @@ h2.section-title:after{
   display: inline-block;
   position: relative;
   width: 30%;
-  text-align: right;
+  /* text-align: right; */
 }
 .card h3{
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   font-size: 1.25rem;
   font-style: normal;
   text-align: center;
@@ -903,17 +923,18 @@ h2.section-title:after{
 .card p{
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 0;
-  width: 75%;
+  margin-bottom: 10px;
+  width: 80%;
+  color: var(--black);
   font-size: 0.9rem;
   font-style: normal;
   text-align: center;
 }
 .card .more{
   display: inline-block;
-  position: absolute;
-  right: -5px;
-  bottom: 0;
+  /* position: absolute; */
+  /* right: -5px; */
+  /* bottom: -5px; */
   padding: 2px 8px;
   border-radius: 50px;
   background-color: var(--orange);
@@ -926,15 +947,13 @@ h2.section-title:after{
 }
 @media (max-width: 768px){
   .card{
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     width: 100%;
   }
   .card p{
-    margin-bottom: 5px;
+    margin-bottom: 20px;
   }
-  .events .section-title:before,.events .section-title:after{
-    width: 20%;
-  }
+
   .events:before{
     top: -2rem;
     border: 8px solid transparent;
@@ -1005,7 +1024,7 @@ footer .to-top{
   border-radius: 15px;
   color: #fff;
   /* font-size: 16px; */
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   font-weight: 500;
   font-style: normal;
   line-height: 1;
@@ -1041,6 +1060,11 @@ footer .to-top{
   transform: translateX(-50%);
 }
 @media (max-width: 1440px){
+  .message-box{ 
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 1280px){
   .message-box{ 
     font-size: 1.5rem;
   }
