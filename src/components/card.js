@@ -7,14 +7,14 @@ const Card = ({ cardLink, cardSrcURL, cardAlt,cardTitle, cardExcrept }) => (
   <div className="card">
     {/* <GatsbyImage image='../images/錢往新未來-1.png' alt={``} /> */}
     {/* <Img fluid={cardSrcURL}/> */}
-    <Link to={cardLink}>
+    <a href={cardLink} target='_blank'>
       <img src={cardSrcURL} alt={cardAlt}/>
-    </Link>
+    </a>
     <h3>{cardTitle}</h3>
     <p>{cardExcrept}</p>
-    <Link to={cardLink} className='more'>
+    <a href={cardLink} className='more' target='_blank'>
         閱讀更多
-    </Link>
+    </a>
   </div>
 )
 export default Card

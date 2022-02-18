@@ -10,9 +10,9 @@ import Video from "../components/video"
 // import banner_video from '../video/banner030102.mp4';
 import banner_video from '../video/b020103-1080.mp4';
 import mbanner_video from '../video/mb020103.mp4';
-import card1 from '../images/OU數存專區_486x322.jpg';
-import card2 from '../images/OU微企貸形象廣告_486x322.jpg';
-import card3 from '../images/智能理財_486x322.png';
+import card1 from './../images/OU數存專區_486x322.jpg';
+import card2 from './../images/OU微企貸形象廣告_486x322.jpg';
+import card3 from './../images/智能理財_486x322.png';
 
 let w = 1440;
 const isBrowser = typeof window !== "undefined";
@@ -22,7 +22,7 @@ if(isBrowser){
 
 const IndexPage = () => (
   <Layout>
-    <Seo title="新光銀行" subTitle='30歲以下必懂，準到哭，新年厭世冷雞湯第一句就是你了' />
+    <Seo title="新光銀行" subTitle='被一句話神啟發了，看完驚呆，超有感，比國師還準！' />
     <div className='banner-container'>
       {/* <StaticImage
         src="../images/banner-02.gif"
@@ -54,7 +54,7 @@ const IndexPage = () => (
       {/* <h2 className='section-title'>形象影片</h2> */}
       <div className='video-container'>
         <Video
-          videoSrcURL="https://www.youtube.com/embed/P3192Sz2gws"
+          videoSrcURL="https://www.youtube.com/embed/Xnr6vtHeoNc"
           videoTitle="Official Music Video on YouTube"
         />
         {/* <div className='video-describe'>
@@ -98,11 +98,16 @@ const IndexPage = () => (
         alt=""
         style={{ marginBottom: `0.25rem` }}
       />
-      <Link 
-        to="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fctkpro.github.io%2Fskb-gatsby%2F&display=popup&ref=plugin&src=share_button" 
-        className="shareToFB fab fa-facebook">
-        新年之神說：分享更快實現心願！
-      </Link>
+      <p>點擊信封看提示</p>
+      <a 
+        // href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fctkpro.github.io%2Fskb-gatsby%2F&display=popup&ref=plugin&src=share_button"
+        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.skbank.com.tw%2Fcampaign%2Fnewfuture%2Findex.html&amp;src=sdkpreparse"
+        className="shareToFB fab fa-facebook"
+        target='_blank'
+        >
+        {/* { w < 768 ? '幸運之神說：點擊信封看提示，分享更快實現心願！' : '幸運之神說：分享更快實現心願！'} */}
+        分享你的新年第一句
+      </a>
       <div className='message-box'>NEW MESSAGE</div>
     </section>
 
@@ -110,7 +115,8 @@ const IndexPage = () => (
       <h2 className='section-title'>錢往新未來</h2>
       <div className='card-container'>
         <Card
-          cardLink='https://www.skbank.com.tw/campaign/skbankOU/home'
+          // cardLink='https://www.skbank.com.tw/campaign/skbankOU/home'
+          cardLink='https://pse.is/3szw6e'
           cardSrcURL={card1}
           cardTitle='OU數位帳戶'
           cardExcrept='線上快速開戶優惠滿滿'
@@ -157,69 +163,81 @@ const messages = ["任性也是一種個性。","現在錯過的，會在未來�
   "想想二十年後的你會怎麼說。","貼上你自己創造的標籤。","不需要斷捨離，只需要清掉桌上的垃圾。","先做了再來怕失敗。","你不需要擁有它，找機會體驗它就好。",
   "任何鳥事都能變成下一首饒舌歌。","帶著問題共處，每個大師都這麼做。","事情讓你跌破眼鏡時，換個視角。","除了照顧好自己，沒有事非做不可。"];
 
-  function popupMessage(){
-    let msgBox = document.querySelector('.message-box');
-    let rwd = 1;
-    
-    let randomMsg = messages[~~(Math.random() * messages.length)];
-    msgBox.textContent = randomMsg;
-    if(msgBox.textContent.length >= 13){
-      msgBox.style.width = '350px';
-      if(w<=1280){
-        msgBox.style.width = '300px';
-      }
-      if(w<=1024){
-        msgBox.style.width = '250px';
-      }
+function popupMessage(){
+  let msgBox = document.querySelector('.message-box');
+  let rwd = 1;
+  
+  let randomMsg = messages[~~(Math.random() * messages.length)];
+  msgBox.textContent = randomMsg;
+  if(msgBox.textContent.length >= 13){
+    msgBox.style.width = '350px';
+    if(w<=1280){
+      msgBox.style.width = '300px';
     }
-
-    let offsetYRate = 30;
-    let offsetY = 0;
-    if(w <= 768){
-      rwd = 0;
-      offsetYRate = 5;
-      offsetY = msgBox.textContent.length >= 10 ? -50 : -40;
+    if(w<=1024){
+      msgBox.style.width = '250px';
     }
-    let randomX;
-    let randomY = 15 + offsetY + ~~(Math.random() * offsetYRate);
-    // let envelopeWidth = 410;
-    if(Math.random() < 0.5){
-      // 從最左邊到信封左側，信封寬410
-      // let leftLimit = (w - envelopeWidth)/2;
-      let range = 15;
-      if(w<=1440){ range = 12; }
-      if(w<=1280){ range = 7; }
-      if(w<=1024){ range = 6; }
-      if(msgBox.textContent.length < 13){
-        range = 1.5;
-      }
-      randomX = (Math.random() * range);
-      // if( (randomX/100)*w + msgBox.offsetWidth > leftLimit){
-      //   randomX = ((leftLimit - msgBox.offsetWidth)/w)*100;
-      // }
-    }else{
-      let rangeFrom = 60;
-      let rangeTo = 100;
-      if( w<= 1440){
-        rangeFrom = 65;
-        rangeTo = 75;
-      }
-      if( w<= 1024){
-        rangeFrom = 70;
-      }
-      randomX = rangeFrom + (Math.random() * (rangeTo - rangeFrom));
-      if( (randomX/100)*w + msgBox.offsetWidth > w){
-        randomX = ((w - msgBox.offsetWidth)/w)*100;
-      }
-    }
-    msgBox.style.left = `${randomX}%`;
-    msgBox.style.top = `${randomY}%`;
-    msgBox.style.opacity = `1`;
-    
-    msgBox.classList.remove('pop-effect');
-    setTimeout(function(){
-      msgBox.classList.add('pop-effect');
-    },300)
   }
+
+  let offsetYRate = 30;
+  let offsetY = 0;
+  if(w <= 768){
+    rwd = 0;
+    offsetYRate = 5;
+    offsetY = msgBox.textContent.length >= 10 ? -50 : -40;
+  }
+  let randomX;
+  let randomY = 15 + offsetY + ~~(Math.random() * offsetYRate);
+  // let envelopeWidth = 410;
+  if(Math.random() < 0.5){
+    // 從最左邊到信封左側，信封寬410
+    // let leftLimit = (w - envelopeWidth)/2;
+    let range = 15;
+    if(w<=1440){ range = 12; }
+    if(w<=1280){ range = 7; }
+    if(w<=1024){ range = 6; }
+    if(msgBox.textContent.length < 13){
+      range = 1.5;
+    }
+    randomX = (Math.random() * range);
+    // if( (randomX/100)*w + msgBox.offsetWidth > leftLimit){
+    //   randomX = ((leftLimit - msgBox.offsetWidth)/w)*100;
+    // }
+  }else{
+    let rangeFrom = 60;
+    let rangeTo = 100;
+    if( w<= 1440){
+      rangeFrom = 65;
+      rangeTo = 75;
+    }
+    if( w<= 1024){
+      rangeFrom = 70;
+    }
+    randomX = rangeFrom + (Math.random() * (rangeTo - rangeFrom));
+    if( (randomX/100)*w + msgBox.offsetWidth > w){
+      randomX = ((w - msgBox.offsetWidth)/w)*100;
+    }
+  }
+  msgBox.style.left = `${randomX}%`;
+  msgBox.style.top = `${randomY}%`;
+  msgBox.style.opacity = `1`;
+  
+  msgBox.classList.remove('pop-effect');
+  setTimeout(function(){
+    msgBox.classList.add('pop-effect');
+  },300)
+}
+
+// const navbar = document.querySelector('.fixed-header');
+// const navbarTop = navbar.offsetTop;
+// document.addEventListener('scroll',()=>{
+//   console.log('w:'+window.pageYOffset);
+//   console.log('n:'+navbarTop);
+//   if(window.pageYOffset >= navbarTop){
+//     navbar.classList.add('sticky');
+//   }else{
+//     navbar.classList.remove('sticky');
+//   }
+// })
 
 export default IndexPage

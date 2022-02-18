@@ -10,6 +10,8 @@
   --orange: #f06900;
   --blue: #314790;
   --black: #000;
+  --pink: #E9D6C6;
+  --orange-msg: #ED6500;
 }
 html {
   -ms-text-size-adjust: 100%;
@@ -17,6 +19,7 @@ html {
   font: 112.5%/1.45em georgia, serif, sans-serif;
   box-sizing: border-box;
   overflow-y: scroll;
+  /* overflow: hidden; */
 }
 body {
   margin: 0;
@@ -609,6 +612,7 @@ header{
   background-size: contain;
   background-position: right 10px;
   background-color: #e71a0f;
+  z-index: 10;
 }
 header h1{
   display: inline-block;
@@ -617,14 +621,31 @@ header h1{
 header h1 + a:before{
   content: '\f09a';
 }
+header.sticky-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+header.sticky-header + div{
+  padding-top: 99px;
+}
+
 @media (max-width: 768px){
   header .logo{
     width: 150px;
+  }
+  header.sticky-header + div{
+    padding-top: 88px;
   }
 }
 @media (max-width: 350px){
   header .logo{
     width: 125px;
+  }
+
+  header.sticky-header + div{
+    padding-top: 85px;
   }
 }
 
@@ -657,9 +678,9 @@ header h1 + a:before{
 
   }
 }
-@media (max-width: 600px){
+@media (max-width: 539px){
   .skb-banner{
-    height: calc( 100vh - 90px);
+    height: calc( 100vh - 86px);
     transform: scale(1.07);
   }
 }
@@ -669,12 +690,35 @@ header h1 + a:before{
     transform: scale(1.05);
   }
 }
+@media (max-width: 350px){
+  .skb-banner{
+    height: calc( 100vh - 74px);
+  }
+}
+@media(max-aspect-ratio:360/740){
+  .skb-banner{
+    height: calc( 100vh - 78px);
+    transform: scale(1.25);
+  }
+}
+
+@media(max-aspect-ratio:390/844){
+  .skb-banner{
+    height: calc( 100vh - 87px);
+    transform: scale(1.32);
+  }
+}
+@media(max-aspect-ratio:412/915){
+  .skb-banner{
+    height: calc( 100vh - 91px);
+    transform: scale(1.36);
+  }
+}
 section{
   margin: 3rem 0;
   font-style: italic;
   text-align: center;
 }
-
 
 /* slogan區塊 */
 .slogan{
@@ -1020,9 +1064,9 @@ footer .to-top{
   left: 45vw;
   padding: 0.5rem 0.75rem 0.75rem;
   transform: scale(1.1);
-  background-color: var(--blue);
+  background-color: var(--pink);
   border-radius: 15px;
-  color: #fff;
+  color: var(--orange-msg);
   /* font-size: 16px; */
   font-size: 2.5rem;
   font-weight: 500;
@@ -1044,7 +1088,7 @@ footer .to-top{
   border: 10px solid #000;
   border-color: transparent;
   /* border-top-color: rgba(235,200,10,0.6); */
-  border-top-color: var(--blue);
+  border-top-color: var(--pink);
 }
 .shareToFB{
   display: inline-block;
@@ -1078,7 +1122,7 @@ footer .to-top{
     width: 50%;
   }
   .shareToFB{
-    width: 60%;
+    width: 40%;
     font-size: 12px;
   }
 }
